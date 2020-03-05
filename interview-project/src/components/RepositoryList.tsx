@@ -8,8 +8,6 @@ const RepositoryList: FunctionComponent<{
   return (
       <div className="repositoryList">
           <h1>Repository List:</h1>
-          {console.log(repositories)
-          }
           {repositories.map(
               repo => (
                   <p>{repo.name}</p>

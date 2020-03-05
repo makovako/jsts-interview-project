@@ -19,10 +19,21 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [organisations, setOrganisations] = useState<Organisation[]>([]);
   const [repositories, setRepositories] = useState<Repository[]>([]);
-  const [user, setUser] = useState({})
+  const [error, setError] = useState<string>('');
+  const [user, setUser] = useState<User | undefined>()
 
   const update = async () => {
-    const raw_repositories = await getRepos(searchTerm);
+    setError('')
+    let raw_repositories:any = [];
+    try {
+      raw_repositories = await getRepos(searchTerm);
+      
+    } catch (error) {
+      setOrganisations([])
+      setRepositories([])
+      setError(error.message)
+      return
+    }
     setRepositories(
       raw_repositories.map(
         (repo: any) =>
@@ -36,12 +47,26 @@ function App() {
           )
       )
     );
+    
+    let raw_user:any = {}
+    let raw_organisations:any = []
+    try {
+      const res = await getUserData(searchTerm);
+      raw_user = res.user
+      raw_organisations = res.orgs
+      
+    } catch (error) {
+      setOrganisations([])
+      setRepositories([])
+      setError(error.message)
+      return
+    }
 
-    const {user, orgs} = await getUserData(searchTerm);
-    console.log(orgs);
+    setUser(new User(raw_user.login, raw_user.name, raw_user.avatar_url,raw_user.url))
+
     
     setOrganisations(
-      orgs.map(
+      raw_organisations.map(
         (org: any) =>
           new Organisation(org.login, org.description, org.avatar_url, org.url)
       )
@@ -50,12 +75,13 @@ function App() {
 
   return (
     <div className="App">
+      {error && (<>{error}</>)}
       <Search
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
         update={update} />
       
-      <Result repositories={repositories} organisations={organisations} />
+      <Result repositories={repositories} organisations={organisations} user={user}/>
     </div>
   );
 }

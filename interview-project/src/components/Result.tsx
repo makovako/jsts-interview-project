@@ -3,18 +3,20 @@ import OrganisationList from "./OrganisationList";
 import RepositoryList from "./RepositoryList";
 import Organisation from "../types/Organisation";
 import Repository from "../types/Repository";
+import User from "../types/User";
 
-const Result: FunctionComponent<{organisations: Organisation[], repositories: Repository[]}> = ({organisations, repositories}) => {
-    console.log(repositories);
-    
+const Result: FunctionComponent<{
+  organisations: Organisation[];
+  repositories: Repository[];
+  user: User | undefined;
+}> = ({ organisations, repositories, user }) => {
   return (
     <div className="results">
       <h1>Results</h1>
       <div className="panes">
-          {console.log(repositories)
-          }
-          <RepositoryList repositories={repositories} />
-          <OrganisationList organisations={organisations}/>
+        {user && <p>{user.login}</p>}
+        <RepositoryList repositories={repositories} />
+        <OrganisationList organisations={organisations} />
       </div>
     </div>
   );
