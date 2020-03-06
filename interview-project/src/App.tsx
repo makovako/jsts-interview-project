@@ -27,48 +27,10 @@ function App() {
   const [user, setUser] = useState<User | undefined>();
   const [loading, setLoading] = useState<boolean>(false);
 
-  const update = async () => {
-    setError("");
-    setLoading(true);
-    let raw_repositories: any = [];
-    try {
-      raw_repositories = await getRepos(searchTerm);
-    } catch (error) {
-      setOrganisations([]);
-      setRepositories([]);
-      setUser(undefined);
-      setError(error.message);
-      setLoading(false);
-      return;
-    }
-    setRepositories(
-      raw_repositories.map(
-        (repo: any) =>
-          new Repository(
-            repo.name,
-            repo.open_issues_count,
-            repo.created_at,
-            repo.description,
-            repo.forks_count,
-            repo.html_url
-          )
-      )
+  const downloadUser = async () => {
+    const { user: raw_user, orgs: raw_organisations } = await getUserData(
+      searchTerm
     );
-
-    let raw_user: any = {};
-    let raw_organisations: any = [];
-    try {
-      const res = await getUserData(searchTerm);
-      raw_user = res.user;
-      raw_organisations = res.orgs;
-    } catch (error) {
-      setOrganisations([]);
-      setRepositories([]);
-      setUser(undefined);
-      setError(error.message);
-      setLoading(false);
-      return;
-    }
 
     setUser(
       new User(
@@ -90,6 +52,40 @@ function App() {
           )
       )
     );
+  };
+
+  const downloadRepositories = async () => {
+    const raw_repositories = await getRepos(searchTerm);
+
+    setRepositories(
+      raw_repositories.map(
+        (repo: any) =>
+          new Repository(
+            repo.name,
+            repo.open_issues_count,
+            repo.created_at,
+            repo.description,
+            repo.forks_count,
+            repo.html_url
+          )
+      )
+    );
+  };
+
+  const update = async () => {
+    setError("");
+    setLoading(true);
+    try {
+      await downloadRepositories();
+      await downloadUser();
+    } catch (error) {
+      setOrganisations([]);
+      setRepositories([]);
+      setUser(undefined);
+      setError(error.message);
+      setLoading(false);
+      return;
+    }
 
     setLoading(false);
   };
@@ -101,7 +97,15 @@ function App() {
         setSearchTerm={setSearchTerm}
         update={update}
       />
-      {loading && <LinearProgress variant="query" />}
+      {loading ? (
+        <LinearProgress variant="query" />
+      ) : (
+        <Result
+          repositories={repositories}
+          organisations={organisations}
+          user={user}
+        />
+      )}
       <Collapse in={error.length > 0}>
         <Box
           p={2}
@@ -119,11 +123,6 @@ function App() {
           </Box>
         </Box>
       </Collapse>
-      <Result
-        repositories={repositories}
-        organisations={organisations}
-        user={user}
-      />
     </Container>
   );
 }
