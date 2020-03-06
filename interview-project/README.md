@@ -1,3 +1,26 @@
+# Running the project
+
+
+
+## Dependency installation
+
+- run `npm install`
+
+## Run
+
+- development
+  - run `npm start`
+- production
+  - in `package.json` - change or remove `homepage` variable (default is my github pages url for this project)
+  - `npm run build` - creates build folder, which can be deployed on the server
+
+## Optional: deploy to github pages
+
+- in `package.json` - change `homepage` variable, format is `https://<github_username>.github.com/<github_reponame>` or `https://<custom_url>/<github_reponame>` if custom url is setup in github for github pages
+- run `npm run deploy` - will deploy site to gh-pages branch, github should automatically detect it and publish the app, if not go to the settings page of the github repo
+
+# Original readme
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

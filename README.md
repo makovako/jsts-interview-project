@@ -1,5 +1,9 @@
 # JS/TS Interview Project (React)
 
+To run the project, go to the `interview-project` folder and follow instructions from README there.
+
+# Original assignment
+
 This is a small project for a JavaScript interview.
 
 ## Goal
