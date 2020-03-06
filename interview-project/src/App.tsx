@@ -11,6 +11,8 @@ import User from "./types/User";
 import { Container, Box, Collapse, Typography, LinearProgress } from "@material-ui/core";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 
+const GITHUB_BASE_URL = "https://github.com/"
+
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [organisations, setOrganisations] = useState<Organisation[]>([]);
@@ -73,7 +75,7 @@ function App() {
     setOrganisations(
       raw_organisations.map(
         (org: any) =>
-          new Organisation(org.login, org.description, org.avatar_url, org.html_url)
+          new Organisation(org.login, org.description, org.avatar_url, `${GITHUB_BASE_URL}${org.login}`)
       )
     );
 
