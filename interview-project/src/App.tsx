@@ -64,6 +64,7 @@ function App() {
     } catch (error) {
       setOrganisations([]);
       setRepositories([]);
+      setUser(undefined);
       setError(error.message);
       setLoading(false);
       return;
