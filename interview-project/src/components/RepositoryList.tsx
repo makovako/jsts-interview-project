@@ -17,9 +17,13 @@ const RepositoryList: FunctionComponent<{
           </Box>
         </Grid>
         <Grid item>
-          {repositories.map((repo: Repository) => (
-            <RepositoryItem key={repo.name} repository={repo} />
-          ))}
+          {repositories.length === 0 ? (
+            <Typography variant="h4">No repositories</Typography>
+          ) : (
+            repositories.map((repo: Repository) => (
+              <RepositoryItem key={repo.name} repository={repo} />
+            ))
+          )}
         </Grid>
       </Grid>
     </Box>

@@ -17,9 +17,13 @@ const OrganisationList: FunctionComponent<{
           </Box>
         </Grid>
         <Grid item>
-          {organisations.map((org: Organisation) => (
-            <OrganisationItem key={org.login} organisation={org} />
-          ))}
+          {organisations.length === 0 ? (
+            <Typography variant="h4">No organisations</Typography>
+          ) : (
+            organisations.map((org: Organisation) => (
+              <OrganisationItem key={org.login} organisation={org} />
+            ))
+          )}
         </Grid>
       </Grid>
     </Box>
