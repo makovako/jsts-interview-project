@@ -7,14 +7,20 @@ const OrganisationList: FunctionComponent<{
   organisations: Organisation[];
 }> = ({ organisations }) => {
   return (
-    <Box m={1}>
-      <Grid direction="column">
-        <Typography variant="h3" align="center">
-          Organisations
-        </Typography>
-        {organisations.map((org: Organisation) => (
-          <OrganisationItem key={org.login} organisation={org} />
-        ))}
+    <Box my={1}>
+      <Grid container direction="column">
+        <Grid item>
+          <Box p={2}>
+            <Typography variant="h3" align="center">
+              Organisations
+            </Typography>
+          </Box>
+        </Grid>
+        <Grid item>
+          {organisations.map((org: Organisation) => (
+            <OrganisationItem key={org.login} organisation={org} />
+          ))}
+        </Grid>
       </Grid>
     </Box>
   );
