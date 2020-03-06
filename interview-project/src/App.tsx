@@ -8,7 +8,7 @@ import Repository from "./types/Repository";
 import Organisation from "./types/Organisation";
 import User from "./types/User";
 
-import { Container, Box, Collapse, Typography } from "@material-ui/core";
+import { Container, Box, Collapse, Typography, LinearProgress } from "@material-ui/core";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 
 function App() {
@@ -17,9 +17,11 @@ function App() {
   const [repositories, setRepositories] = useState<Repository[]>([]);
   const [error, setError] = useState<string>("");
   const [user, setUser] = useState<User | undefined>();
+  const [loading, setLoading] = useState<boolean>(false);
 
   const update = async () => {
     setError("");
+    setLoading(true);
     let raw_repositories: any = [];
     try {
       raw_repositories = await getRepos(searchTerm);
@@ -28,6 +30,7 @@ function App() {
       setRepositories([]);
       setUser(undefined);
       setError(error.message);
+      setLoading(false);
       return;
     }
     setRepositories(
@@ -54,6 +57,7 @@ function App() {
       setOrganisations([]);
       setRepositories([]);
       setError(error.message);
+      setLoading(false);
       return;
     }
 
@@ -72,10 +76,13 @@ function App() {
           new Organisation(org.login, org.description, org.avatar_url, org.html_url)
       )
     );
+
+    setLoading(false);
   };
 
   return (
     <Container>
+      {loading && <LinearProgress variant="query"/>}
       <Search
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
