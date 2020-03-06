@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./App.css";
 
 import Search from "./components/Search";
 import Result from "./components/Result";
@@ -18,7 +17,6 @@ function App() {
   const [repositories, setRepositories] = useState<Repository[]>([]);
   const [error, setError] = useState<string>("");
   const [user, setUser] = useState<User | undefined>();
-  // const [user, setUser] = useState<User | undefined>();
 
   const update = async () => {
     setError("");
@@ -28,6 +26,7 @@ function App() {
     } catch (error) {
       setOrganisations([]);
       setRepositories([]);
+      setUser(undefined);
       setError(error.message);
       return;
     }
@@ -36,11 +35,11 @@ function App() {
         (repo: any) =>
           new Repository(
             repo.name,
-            repo.open_issue,
+            repo.open_issues_count,
             repo.created_at,
             repo.description,
             repo.forks_count,
-            repo.url
+            repo.html_url
           )
       )
     );
@@ -70,7 +69,7 @@ function App() {
     setOrganisations(
       raw_organisations.map(
         (org: any) =>
-          new Organisation(org.login, org.description, org.avatar_url, org.url)
+          new Organisation(org.login, org.description, org.avatar_url, org.html_url)
       )
     );
   };
