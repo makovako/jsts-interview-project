@@ -8,10 +8,16 @@ import Repository from "./types/Repository";
 import Organisation from "./types/Organisation";
 import User from "./types/User";
 
-import { Container, Box, Collapse, Typography, LinearProgress } from "@material-ui/core";
+import {
+  Container,
+  Box,
+  Collapse,
+  Typography,
+  LinearProgress
+} from "@material-ui/core";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 
-const GITHUB_BASE_URL = "https://github.com/"
+const GITHUB_BASE_URL = "https://github.com/";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -75,7 +81,12 @@ function App() {
     setOrganisations(
       raw_organisations.map(
         (org: any) =>
-          new Organisation(org.login, org.description, org.avatar_url, `${GITHUB_BASE_URL}${org.login}`)
+          new Organisation(
+            org.login,
+            org.description,
+            org.avatar_url,
+            `${GITHUB_BASE_URL}${org.login}`
+          )
       )
     );
 
@@ -84,12 +95,12 @@ function App() {
 
   return (
     <Container>
-      {loading && <LinearProgress variant="query"/>}
       <Search
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
         update={update}
       />
+      {loading && <LinearProgress variant="query" />}
       <Collapse in={error.length > 0}>
         <Box
           p={2}
