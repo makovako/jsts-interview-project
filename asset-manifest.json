@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "https://makovako.xyz/jsts-interview-project/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "https://makovako.xyz/jsts-interview-project/static/js/main.d72f0e87.chunk.js",
-    "main.js.map": "https://makovako.xyz/jsts-interview-project/static/js/main.d72f0e87.chunk.js.map",
-    "runtime-main.js": "https://makovako.xyz/jsts-interview-project/static/js/runtime-main.b93b590f.js",
-    "runtime-main.js.map": "https://makovako.xyz/jsts-interview-project/static/js/runtime-main.b93b590f.js.map",
-    "static/js/2.516aada7.chunk.js": "https://makovako.xyz/jsts-interview-project/static/js/2.516aada7.chunk.js",
-    "static/js/2.516aada7.chunk.js.map": "https://makovako.xyz/jsts-interview-project/static/js/2.516aada7.chunk.js.map",
-    "index.html": "https://makovako.xyz/jsts-interview-project/index.html",
-    "precache-manifest.8f28e04b1a2326d3a04386b6bed770ec.js": "https://makovako.xyz/jsts-interview-project/precache-manifest.8f28e04b1a2326d3a04386b6bed770ec.js",
-    "service-worker.js": "https://makovako.xyz/jsts-interview-project/service-worker.js",
-    "static/css/main.5ecd60fb.chunk.css.map": "https://makovako.xyz/jsts-interview-project/static/css/main.5ecd60fb.chunk.css.map",
-    "static/js/2.516aada7.chunk.js.LICENSE.txt": "https://makovako.xyz/jsts-interview-project/static/js/2.516aada7.chunk.js.LICENSE.txt"
+    "main.css": "/jsts-interview-project/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/jsts-interview-project/static/js/main.d72f0e87.chunk.js",
+    "main.js.map": "/jsts-interview-project/static/js/main.d72f0e87.chunk.js.map",
+    "runtime-main.js": "/jsts-interview-project/static/js/runtime-main.318da7e7.js",
+    "runtime-main.js.map": "/jsts-interview-project/static/js/runtime-main.318da7e7.js.map",
+    "static/js/2.516aada7.chunk.js": "/jsts-interview-project/static/js/2.516aada7.chunk.js",
+    "static/js/2.516aada7.chunk.js.map": "/jsts-interview-project/static/js/2.516aada7.chunk.js.map",
+    "index.html": "/jsts-interview-project/index.html",
+    "precache-manifest.5658fffcee2239b5ab088bac3bf91584.js": "/jsts-interview-project/precache-manifest.5658fffcee2239b5ab088bac3bf91584.js",
+    "service-worker.js": "/jsts-interview-project/service-worker.js",
+    "static/css/main.5ecd60fb.chunk.css.map": "/jsts-interview-project/static/css/main.5ecd60fb.chunk.css.map",
+    "static/js/2.516aada7.chunk.js.LICENSE.txt": "/jsts-interview-project/static/js/2.516aada7.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.b93b590f.js",
+    "static/js/runtime-main.318da7e7.js",
     "static/js/2.516aada7.chunk.js",
     "static/css/main.5ecd60fb.chunk.css",
     "static/js/main.d72f0e87.chunk.js"
